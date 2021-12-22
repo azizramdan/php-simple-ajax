@@ -1,11 +1,19 @@
 <?php
 
-switch ($_SERVER["REQUEST_URI"]) {
+function page(string $path) : void
+{
+    include __DIR__.'/pages/'.$path.'.php';
+}
+
+switch ($_SERVER['REQUEST_URI']) {
+    case '/':
+        page('index');
+        break;
     case '/endpoint-a':
-        include __DIR__.'/endpoint-a.php';
+        page('endpoint-a');
         break;
     
     default:
-        echo '404';
+        page('404');
         break;
 }

@@ -16,11 +16,14 @@
   <div class="container">
     <form id="form">
       <div class="form-group">
-        <label for="data-1">Example textarea</label>
+        <label for="data-1">Input</label>
         <textarea class="form-control" id="data-1" rows="3"></textarea>
       </div>
       <button class="btn btn-primary">
-        submit
+        Submit
+      </button>
+      <button class="btn btn-danger" type="button" id="stop-button">
+        Stop
       </button>
     </form>
   
@@ -36,6 +39,7 @@
   <script>
     let formData = []
     let sentIndex = 0
+    let isStopped = false
 
     $('#form').submit(function (e) {
       e.preventDefault()
@@ -45,12 +49,16 @@
       submitAjax()
     })
 
+    $('#stop-button').on('click', function () {
+      isStopped = true
+    })
+
     function submitAjax() {
       const data = formData[sentIndex]
 
       $.ajax({
         method: 'POST',
-        url: 'http://localhost:8080/endpoint-a',
+        url: '/endpoint-a',
         data: {
           data,
         },
@@ -61,7 +69,7 @@
 
           sentIndex++
 
-          if (sentIndex < formData.length) submitAjax();
+          if (!isStopped && sentIndex < formData.length) submitAjax();
         },
       })
     }
