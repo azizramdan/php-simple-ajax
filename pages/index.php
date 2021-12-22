@@ -46,6 +46,7 @@
 
       formData = $('#data-1').val().split('\n')
       sentIndex = 0
+      isStopped = false
       submitAjax()
     })
 
