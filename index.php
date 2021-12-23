@@ -2,7 +2,7 @@
 
 function page(string $path): void
 {
-    include __DIR__.'/pages/'.$path.'.php';
+    require_once __DIR__.'/pages/'.$path.'.php';
 }
 
 function url(string $path): bool
