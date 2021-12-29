@@ -7,7 +7,7 @@ function page(string $path): void
 
 function url(string $path): bool
 {
-    return trim(path(), '/') == trim($path);
+    return trim(path(), '/') == trim($path, '/');
 }
 
 function path(): string
